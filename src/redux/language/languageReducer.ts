@@ -6,10 +6,10 @@ export interface LanguageState {
 }
 
 const defaultState: LanguageState = {
-    language: 'zh',
+    language: 'en',
     languageList: [
-        { name: '中文', code: 'zh' },
-        { name: 'English', code: 'en' }
+        { name: 'English', code: 'en' },
+        { name: '中文', code: 'zh' } 
     ]
 }
 

@@ -1,8 +1,7 @@
-
+.page-content {
+  width: 1230px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 750px;
+}
   
-  .page-content {
-    width: 1230px;
-    margin-left: auto;
-    margin-right: auto;
-    min-height: 750px;
-  }

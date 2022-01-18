@@ -6,12 +6,13 @@ import sideImage1 from '../../assets/images/sider_2019_12-09.png';
 import sideImage2 from '../../assets/images/sider_2019_02-04.png';
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png';
 import { withTranslation, WithTranslation } from "react-i18next";
-import { connect} from "react-redux";
+import { connect } from "react-redux";
 import { RootState } from "../../redux/store";
-import { fetchRecommendProductsActionCreator} from "../../redux/recommendProducts/recommendProductsActions";
+import { fetchRecommendProductsActionCreator } from "../../redux/recommendProducts/recommendProductsActions";
+import { MainLayout } from "../../layouts/mainLayout";
 
 
-const mapStateToProps = (state:RootState) => {
+const mapStateToProps = (state: RootState) => {
   return {
     loading: state.recommendProducts.loading,
     error: state.recommendProducts.error,
@@ -19,7 +20,7 @@ const mapStateToProps = (state:RootState) => {
   }
 }
 
-const mapDispatchToProps = (dispatch:any) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     fetchProductList: () => {
       dispatch(fetchRecommendProductsActionCreator());
@@ -43,9 +44,7 @@ class HomePageComponent extends React.Component<PropsType> {
 
     return (
       <>
-        <Header />
-        {/* Main Content */}
-        <div className={styles['page-content']}>
+        <MainLayout>
           <Row style={{ marginTop: 20 }}>
             <Col span={6}>
               <SideMenu />
@@ -76,9 +75,7 @@ class HomePageComponent extends React.Component<PropsType> {
             products={productList[2].touristRoutes}
           />
           <BusinessPartners />
-        </div>
-
-        <Footer />
+        </MainLayout>
       </>
     )
   }

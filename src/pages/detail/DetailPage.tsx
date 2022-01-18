@@ -1,30 +1,34 @@
-import { Col, Row, Spin, DatePicker, Space, Divider, Typography, Anchor, Menu } from 'antd';
-import axios from 'axios';
+import { Col, Row, Spin, DatePicker, Divider, Typography, Anchor, Menu, Button } from 'antd';
+import {ShoppingCartOutlined} from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { RouteComponentProps, useParams } from 'react-router-dom';
 import { Footer, Header, ProductComments, ProductIntro } from '../../components';
+import { MainLayout } from '../../layouts/mainLayout';
 import { useSelector } from '../../redux/hooks';
 import { fetchFail, fetchStart, fetchSuccess, getProductDetail } from '../../redux/productDetail/slice';
 import { RootState } from '../../redux/store';
 import { generateKey } from '../../Utility';
 import styles from './DetailPage.module.css';
 import { commentMockData } from './mockup';
+import { addShoppingCartItem } from '../../redux/shoppingCart/slice';
 
 interface Props {
     touristRouteId: string;
 }
-
-
+ 
 export const DetailPage: React.FC<RouteComponentProps<Props>> = (props) => {
     const { touristRouteId } = useParams<Props>();
     // const [loading, setLoading] = useState(true);
     // const [product, setProduct] = useState<any>(null);
     // const [error, setError] = useState<string | null>(null);
 
-    const loading = useSelector((state: RootState) => state.productDetail.loading);
-    const product = useSelector((state: RootState) => state.productDetail.data);
-    const error = useSelector((state: RootState) => state.productDetail.error);
+    const loading = useSelector(s => s.productDetail.loading);
+    const product = useSelector(s => s.productDetail.data);
+    const error = useSelector(s => s.productDetail.error);
+    const addShoppingCartLoading = useSelector(s => s.shoppingCart.loading);
+    const jwt = useSelector(s => s.user.token) as string;
+
     const dispatch = useDispatch();
 
     const { RangePicker } = DatePicker;
@@ -38,8 +42,7 @@ export const DetailPage: React.FC<RouteComponentProps<Props>> = (props) => {
 
     return (
         <>
-            <Header />
-            <div className={styles['page-content']}>
+            <MainLayout>
                 {/* product intro and date picker */}
                 <div className={styles['product-intro-container']}>
                     <Row>
@@ -56,6 +59,18 @@ export const DetailPage: React.FC<RouteComponentProps<Props>> = (props) => {
                             />
                         </Col>
                         <Col span={11}>
+                            <Button 
+                            style={{marginTop:50, marginBottom:30, display:'block'}}
+                            type='primary'
+                            danger
+                            loading={addShoppingCartLoading}
+                            onClick={() => {
+                                dispatch(addShoppingCartItem({jwt, touristRouteId: product.id}))
+                            }}
+                            >
+                                <ShoppingCartOutlined />
+                                Add to shoppingCart
+                            </Button>
                             <RangePicker open style={{ marginTop: '20px' }} />
                         </Col>
                     </Row>
@@ -114,8 +129,7 @@ export const DetailPage: React.FC<RouteComponentProps<Props>> = (props) => {
                     </div>
 
                 </div>
-            </div>
-            <Footer />
+            </MainLayout>
         </>
 
     )
