@@ -5,11 +5,8 @@ import { MainLayout } from '../../layouts/mainLayout';
 import { PaymentCard, ProductList } from '../../components';
 import { useSelector } from '../../redux/hooks';
 import { useDispatch } from 'react-redux';
-import { searchProduct } from '../../redux/productSearch/slice';
 import { deleteShoppingCartItems } from '../../redux/shoppingCart/slice';
 import { useHistory } from 'react-router-dom';
-
-
 
 
 export const ShoppingCartPage: React.FC = () => {

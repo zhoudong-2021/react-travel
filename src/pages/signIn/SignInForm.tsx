@@ -10,7 +10,7 @@ import { signIn } from '../../redux/user/slice';
 export const SignInForm = () => {
     const loading = useSelector(s => s.user.loading);
     const jwt = useSelector(s => s.user.token);
-    const error = useSelector(s => s.user.error);
+    // const error = useSelector(s => s.user.error);
     
     const dispatch = useDispatch();
     const history = useHistory();
@@ -27,7 +27,7 @@ export const SignInForm = () => {
         if(jwt !== null){
             history.push('/');
         }
-    }, [jwt]);
+    }, [jwt, history]);
 
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);

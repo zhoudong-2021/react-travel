@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     if (jwt)
       dispatch(getShoppingCart(jwt));
-  }, [jwt])
+  }, [jwt,dispatch]);
 
   return (
     <div className={styles.App}>

@@ -2,11 +2,10 @@ import { Spin } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
-import { FilterArea, Footer, Header, ProductList } from '../../components';
+import { FilterArea, ProductList } from '../../components';
 import { MainLayout } from '../../layouts/mainLayout';
 import { useSelector } from '../../redux/hooks';
 import { searchProduct } from '../../redux/productSearch/slice';
-import { RootState } from '../../redux/store';
 import styles from './SearchPage.module.css';
 
 interface PropsType {
@@ -29,7 +28,7 @@ export const SearchPage: React.FC = () => {
             pageSize: 10,
             keywords
         }));
-    }, [location])
+    }, [location, dispatch, keywords])
 
 
     const onPageChange = (nextPage: string | number, pageSize: string | number) => {

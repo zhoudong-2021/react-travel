@@ -17,9 +17,9 @@ interface JwtPayload extends DefaultJwtPayload {
 
 export const Header: React.FC = () => {
   const history = useHistory();
-  const location = useLocation();
-  const params = useParams();
-  const match = useRouteMatch();
+  // const location = useLocation();
+  // const params = useParams();
+  // const match = useRouteMatch();
 
   const language = useSelector(s => s.language.language);
   const languageList = useSelector(s=> s.language.languageList);

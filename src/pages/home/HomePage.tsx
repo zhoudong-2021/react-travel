@@ -1,7 +1,6 @@
 import React from "react";
-import styles from './HomePage.module.css';
 import { Row, Col, Typography, Spin } from 'antd';
-import { Carousel, Footer, Header, ProductCollection, SideMenu, BusinessPartners } from '../../components';
+import { Carousel, ProductCollection, SideMenu, BusinessPartners } from '../../components';
 import sideImage1 from '../../assets/images/sider_2019_12-09.png';
 import sideImage2 from '../../assets/images/sider_2019_02-04.png';
 import sideImage3 from '../../assets/images/sider_2019_02-04-2.png';

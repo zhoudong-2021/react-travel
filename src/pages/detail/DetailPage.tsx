@@ -1,13 +1,12 @@
 import { Col, Row, Spin, DatePicker, Divider, Typography, Anchor, Menu, Button } from 'antd';
 import {ShoppingCartOutlined} from '@ant-design/icons';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { RouteComponentProps, useParams } from 'react-router-dom';
-import { Footer, Header, ProductComments, ProductIntro } from '../../components';
+import { ProductComments, ProductIntro } from '../../components';
 import { MainLayout } from '../../layouts/mainLayout';
 import { useSelector } from '../../redux/hooks';
-import { fetchFail, fetchStart, fetchSuccess, getProductDetail } from '../../redux/productDetail/slice';
-import { RootState } from '../../redux/store';
+import { getProductDetail } from '../../redux/productDetail/slice';
 import { generateKey } from '../../Utility';
 import styles from './DetailPage.module.css';
 import { commentMockData } from './mockup';
@@ -35,7 +34,7 @@ export const DetailPage: React.FC<RouteComponentProps<Props>> = (props) => {
 
     useEffect(() => {
         dispatch(getProductDetail(touristRouteId));
-    }, []);
+    }, [dispatch]);
 
     if (loading) return <Spin size='large' />
     if (error) return <div>{error}</div>
